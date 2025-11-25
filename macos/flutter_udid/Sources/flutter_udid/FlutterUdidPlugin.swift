@@ -20,17 +20,17 @@ public class FlutterUdidPlugin: NSObject, FlutterPlugin {
   }
 
   private func getUniqueDeviceIdentifierAsString(result: FlutterResult) {
-    let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "flutter_udid"
-    let accountName = Bundle.main.bundleIdentifier ?? "com.default.app"
+    //let bundleName = Bundle.main.infoDictionary?["CFBundleName"] as? String ?? "flutter_udid"
+    //let accountName = Bundle.main.bundleIdentifier ?? "com.default.app"
 
     // Use KeychainAccess with same structure as iOS implementation
-    let keychain = Keychain(service: bundleName).synchronizable(false)
+    //let keychain = Keychain(service: bundleName).synchronizable(false)
 
     // Try to read existing UUID from keychain
-    if let applicationUUID = try? keychain.get(accountName), !applicationUUID.isEmpty {
-      result(applicationUUID)
-      return
-    }
+    //if let applicationUUID = try? keychain.get(accountName), !applicationUUID.isEmpty {
+    //  result(applicationUUID)
+    //  return
+    //}
 
     // Generate new UUID if none exists
     guard let hardwareUUID = self.hardwareUUID(), !hardwareUUID.isEmpty else {
@@ -41,14 +41,14 @@ public class FlutterUdidPlugin: NSObject, FlutterPlugin {
     }
 
     // Save the new UUID to keychain
-    do {
-      try keychain.set(hardwareUUID, key: accountName)
-      result(hardwareUUID)
-    } catch {
-      result(FlutterError(code: "UNAVAILABLE",
-                         message: "UDID not available",
-                         details: nil))
-    }
+    // do {
+    //  try keychain.set(hardwareUUID, key: accountName)
+    result(hardwareUUID)
+    // } catch {
+    //  result(FlutterError(code: "UNAVAILABLE",
+    //                     message: "UDID not available",
+    //                     details: nil))
+    //}
   }
 
   private func hardwareUUID() -> String? {
