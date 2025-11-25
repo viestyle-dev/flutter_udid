@@ -1,7 +1,7 @@
 import Cocoa
 import FlutterMacOS
 import IOKit
-import KeychainAccess
+//import KeychainAccess
 
 public class FlutterUdidPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
